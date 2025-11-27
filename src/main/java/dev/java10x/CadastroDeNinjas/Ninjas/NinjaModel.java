@@ -27,6 +27,9 @@ public class NinjaModel {
     @Column(unique = true) // Coluna única, só terá um e-mail por ninja
     private String email;
 
+    @Column(name = "img_url")
+    private String img_url;
+
     @Column(name = "idade")
     private int idade;
 
@@ -34,7 +37,4 @@ public class NinjaModel {
     @ManyToOne
     @JoinColumn(name = "missoes_id") // Foreing Key ou chave estrangeira
     private MissoesModel missoes;
-
-
-
 }
