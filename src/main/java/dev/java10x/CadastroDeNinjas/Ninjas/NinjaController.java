@@ -30,13 +30,15 @@ public class NinjaController {
     @Operation(summary = "Cria um nova ninja", description = "Cria um novo ninja e insere no banco de dados")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "201", description = "Ninja criado com sucesso"),
-            @ApiResponse(responseCode = "400", description = "Erro na criação do ninja")
+            @ApiResponse(responseCode = "400", description = "Erro na criação do ninja "),
+            @ApiResponse(responseCode = "409", description = "E-mail já cadastrado")
+
     })
-    public ResponseEntity<String> criarNinja(@RequestBody NinjaDTO ninja){
+    public ResponseEntity<NinjaDTO> criarNinja(@RequestBody NinjaDTO ninja){
 
         NinjaDTO novoNinja = ninjaService.criarNinja(ninja);
         return ResponseEntity.status(HttpStatus.CREATED)
-                .body("Ninja criado com sucesso" + novoNinja.getNome() + " ID: " + novoNinja.getId());
+                .body(novoNinja);
     }
 
     //Mostrar todos os ninjas (Read)

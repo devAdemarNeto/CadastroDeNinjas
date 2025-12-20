@@ -1,5 +1,6 @@
 package dev.java10x.CadastroDeNinjas.Ninjas;
 
+import dev.java10x.CadastroDeNinjas.excepition.BusinessException;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -35,6 +36,11 @@ public class NinjaService {
 
     //Criar um novo ninja
     public NinjaDTO  criarNinja(NinjaDTO ninjaDTO){
+
+        // Regra de negócio: e-mail único
+        if (ninjaRepository.existsByEmail(ninjaDTO.getEmail())) {
+            throw new BusinessException("E-mail já cadastrado");
+        }
 
         NinjaModel ninja =  ninjaMapper.map(ninjaDTO);
         ninja = ninjaRepository.save(ninja);
