@@ -1,6 +1,6 @@
 # 🥷 Cadastro de Ninjas
 
-Uma API RESTful desenvolvida com Spring Boot para gerenciamento de cadastro de ninjas, criada como parte do curso Java10x.
+Uma API RESTful desenvolvida com Spring Boot para gerenciamento de cadastro de ninjas e missões.
 
 ## 📋 Sobre o Projeto
 
