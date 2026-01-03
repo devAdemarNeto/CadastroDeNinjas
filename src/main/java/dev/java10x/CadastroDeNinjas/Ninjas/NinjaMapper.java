@@ -1,41 +1,51 @@
 package dev.java10x.CadastroDeNinjas.Ninjas;
 
+import dev.java10x.CadastroDeNinjas.Missoes.MissoesModel;
 import org.springframework.stereotype.Component;
 
 @Component
 public class NinjaMapper {
 
-    public NinjaModel map(NinjaDTO ninjaDTO){
+    public NinjaModel map(NinjaDTO dto){
 
 
 
-        NinjaModel ninjaModel = new NinjaModel();
+        NinjaModel model = new NinjaModel();
 
-        ninjaModel.setId(ninjaDTO.getId());
-        ninjaModel.setNome(ninjaDTO.getNome());
-        ninjaModel.setEmail(ninjaDTO.getEmail());
-        ninjaModel.setIdade(ninjaDTO.getIdade());
-        ninjaModel.setImg_url(ninjaDTO.getImg_url());
-        ninjaModel.setRank(ninjaDTO.getRank());
-        ninjaModel.setMissoes(ninjaDTO.getMissoes());
+        model.setId(dto.getId());
+        model.setNome(dto.getNome());
+        model.setEmail(dto.getEmail());
+        model.setIdade(dto.getIdade());
+        model.setImg_url(dto.getImg_url());
+        model.setRank(dto.getRank());
 
-        return ninjaModel;
+        if (dto.getMissaoID() != null) {
+            MissoesModel missao = new MissoesModel();
+            missao.setId(dto.getMissaoID());
+            model.setMissoes(missao);
+        }
+
+
+        return model;
     }
 
 
-    public NinjaDTO map(NinjaModel ninjaModel){
+    public NinjaDTO map(NinjaModel model){
 
-        NinjaDTO ninjaDTO = new NinjaDTO();
+        NinjaDTO dto = new NinjaDTO();
 
-        ninjaDTO.setId(ninjaModel.getId());
-        ninjaDTO.setNome(ninjaModel.getNome());
-        ninjaDTO.setEmail(ninjaModel.getEmail());
-        ninjaDTO.setIdade(ninjaModel.getIdade());
-        ninjaDTO.setImg_url(ninjaModel.getImg_url());
-        ninjaDTO.setRank(ninjaModel.getRank());
-        ninjaDTO.setMissoes(ninjaModel.getMissoes());
+        dto.setId(model.getId());
+        dto.setNome(model.getNome());
+        dto.setEmail(model.getEmail());
+        dto.setIdade(model.getIdade());
+        dto.setImg_url(model.getImg_url());
+        dto.setRank(model.getRank());
 
-        return ninjaDTO;
+        if (model.getMissoes() != null) {
+            dto.setMissaoID(model.getMissoes().getId());
+        }
+
+        return dto;
 
     }
 
