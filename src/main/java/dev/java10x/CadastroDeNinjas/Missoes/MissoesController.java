@@ -71,6 +71,11 @@ public class MissoesController {
     }
 
     @PutMapping("/alterar/{id}") // mandar uma requisição para alterar as missões
+    @Operation(summary = "Altera uma missão por ID")
+    @ApiResponses({
+            @ApiResponse(responseCode = "200", description = "Missão alterada com  sucesso"),
+            @ApiResponse(responseCode = "404", description = "Missão não encontrada, não foi possival alterar")
+    })
     public ResponseEntity<?> alterarMissao(
             @Parameter(description = "ID da missão")
             @PathVariable long id,
